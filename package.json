@@ -1,0 +1,19 @@
+{
+  "name": "tracking-check",
+  "version": "1.0.0",
+  "description": "Checks a Google Tag Manager and GA4 setup against the tracking verification checklist. Read-only, no API key, no dependencies.",
+  "type": "module",
+  "bin": { "tracking-check": "tracking-check.mjs" },
+  "scripts": {
+    "test": "node test/sample.test.mjs",
+    "sample": "node tracking-check.mjs --dir sample/site --container sample/gtm.js --gtm GTM-SAMPLE1 --mid G-SAMPLE0001 --record sample/records.md --out sample/report",
+    "scan": "node scripts/scan-secrets.mjs",
+    "hooks": "git config core.hooksPath scripts/hooks"
+  },
+  "engines": { "node": ">=18" },
+  "keywords": ["google-tag-manager", "ga4", "tracking", "analytics", "audit", "checklist"],
+  "author": "Tucker Shively",
+  "license": "MIT",
+  "homepage": "https://tuckershively.com/docs/tracking/tracking-verification-checklist/",
+  "repository": { "type": "git", "url": "https://github.com/tuckershively/tracking-check.git" }
+}

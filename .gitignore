@@ -1,0 +1,27 @@
+# Reports from your own runs: they name your site and its ids, so they stay on your machine.
+# sample/report/ is the one report kept, because the sample site is invented.
+tracking-check-*/
+
+# Dependencies (there are none, but keep it that way)
+node_modules/
+
+# Secrets, by name: a second fence behind scripts/scan-secrets.mjs (the pre-commit hook)
+.env
+*.env
+!*.env.example
+.credentials.json
+credentials.json
+*.pem
+*.key
+*.ppk
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+.netrc
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

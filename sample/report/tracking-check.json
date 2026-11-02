@@ -1,0 +1,223 @@
+{
+  "tool": "tracking-check",
+  "version": "1.0.0",
+  "guide": "https://tuckershively.com/docs/tracking/tracking-verification-checklist/",
+  "site": "www.riverbend-plumbing.example",
+  "when": "2026-11-02 12:08 UTC",
+  "pages": 5,
+  "pageSource": "5 saved pages in sample/site",
+  "container": {
+    "id": "GTM-SAMPLE1",
+    "source": "saved copy sample/gtm.js",
+    "version": "12",
+    "measurementIds": [
+      "G-SAMPLE0001"
+    ],
+    "events": [
+      "generate_lead",
+      "phone_click"
+    ],
+    "taggingServer": null
+  },
+  "verdict": "NOT TRUSTWORTHY YET",
+  "tally": {
+    "WARN": 4,
+    "PASS": 8,
+    "FAIL": 2,
+    "MANUAL": 7,
+    "INFO": 3,
+    "SKIP": 3
+  },
+  "checks": [
+    {
+      "id": "1.1",
+      "phase": 1,
+      "status": "WARN",
+      "title": "The container loads on every page, as a script and as a noscript fallback",
+      "detail": "5 pages checked; no noscript fallback on 1: /about.html"
+    },
+    {
+      "id": "1.2",
+      "phase": 1,
+      "status": "PASS",
+      "title": "The container id is a real id, not a placeholder such as GTM-XXXXXXX",
+      "detail": "GTM-SAMPLE1, GTM-TESTOLD"
+    },
+    {
+      "id": "1.3",
+      "phase": 1,
+      "status": "FAIL",
+      "title": "Only one Tag Manager container loads, and it is GTM-SAMPLE1",
+      "detail": "2 containers: GTM-SAMPLE1 on 5 page(s), GTM-TESTOLD on 1 page(s); two on one page: /about.html (GTM-SAMPLE1 + GTM-TESTOLD). A leftover container sends visits to a property nobody reads"
+    },
+    {
+      "id": "1.4",
+      "phase": 1,
+      "status": "PASS",
+      "title": "The container is published and can be read",
+      "detail": "GTM-SAMPLE1 version 12, 4 tags; read from the saved copy sample/gtm.js"
+    },
+    {
+      "id": "1.5",
+      "phase": 1,
+      "status": "FAIL",
+      "title": "No hard-coded Google tag sends to the same measurement id beside the container",
+      "detail": "gtag.js for G-SAMPLE0001 loads beside the container on 1 page(s): /services.html. Every page view on them counts twice"
+    },
+    {
+      "id": "1.6",
+      "phase": 1,
+      "status": "PASS",
+      "title": "The measurement id in the container matches the data stream of the property the business uses",
+      "detail": "G-SAMPLE0001"
+    },
+    {
+      "id": "1.7",
+      "phase": 1,
+      "status": "PASS",
+      "title": "The container id and measurement id are written down in a document the business keeps",
+      "detail": "GTM-SAMPLE1, G-SAMPLE0001 in sample/records.md"
+    },
+    {
+      "id": "1.8",
+      "phase": 1,
+      "status": "MANUAL",
+      "title": "A fresh visit from a phone shows up in GA4 Realtime in the property the business uses",
+      "detail": "open the site on a phone off the office wifi, then look in Reports, Realtime of that property"
+    },
+    {
+      "id": "2.1",
+      "phase": 2,
+      "status": "PASS",
+      "title": "The container has one Google tag per measurement id, so each page load sends one page view",
+      "detail": "G-SAMPLE0001"
+    },
+    {
+      "id": "2.2",
+      "phase": 2,
+      "status": "PASS",
+      "title": "The lead event (generate_lead) fires on a confirmed send, never on Tag Manager's form submission trigger",
+      "detail": "generate_lead on form_sent"
+    },
+    {
+      "id": "2.3",
+      "phase": 2,
+      "status": "PASS",
+      "title": "The events the pages push and the events the container waits for match",
+      "detail": "form_sent"
+    },
+    {
+      "id": "2.4",
+      "phase": 2,
+      "status": "WARN",
+      "title": "A thank-you page cannot be reached without a send: noindex, out of the sitemap, not linked",
+      "detail": "/thank-you.html: no noindex, listed in the sitemap. Visits that never sent anything can land there and count as leads"
+    },
+    {
+      "id": "2.5",
+      "phase": 2,
+      "status": "PASS",
+      "title": "A tap on a phone link sends a GA4 event (phone_click)",
+      "detail": "phone_click"
+    },
+    {
+      "id": "2.6",
+      "phase": 2,
+      "status": "WARN",
+      "title": "A tap on an email link sends a GA4 event (email_click)",
+      "detail": "mailto: links on 5 page(s), but no tag fires on a mailto: click. Fine only if email is not a lead channel"
+    },
+    {
+      "id": "2.7",
+      "phase": 2,
+      "status": "MANUAL",
+      "title": "In Tag Assistant preview, one page load sends one page view, a good send fires the lead event once, and a send that fails validation fires none",
+      "detail": "Tag Assistant (tagassistant.google.com), then the same actions in GA4 DebugView"
+    },
+    {
+      "id": "2.8",
+      "phase": 2,
+      "status": "MANUAL",
+      "title": "GA4's enhanced measurement form interactions are off, or their events are kept out of the lead count",
+      "detail": "GA4, Admin, Data streams, the web stream, Enhanced measurement, Form interactions"
+    },
+    {
+      "id": "3.1",
+      "phase": 3,
+      "status": "INFO",
+      "title": "Events this container sends to GA4",
+      "detail": "generate_lead, phone_click"
+    },
+    {
+      "id": "3.2",
+      "phase": 3,
+      "status": "MANUAL",
+      "title": "generate_lead and phone_click are marked as key events (and email_click if email is a lead channel), no page view or scroll event is, and the date they were marked is written down",
+      "detail": "GA4, Admin, Events (key events). Marking does not apply to earlier data"
+    },
+    {
+      "id": "4.1",
+      "phase": 4,
+      "status": "MANUAL",
+      "title": "A test lead sent from a phone reaches the inbox or CRM, shows as the lead event in Realtime, and a real tap on the phone link shows as the phone event",
+      "detail": "tell the office first, then mark or delete the test lead so it never reaches a report"
+    },
+    {
+      "id": "5.1",
+      "phase": 5,
+      "status": "WARN",
+      "title": "Every form carries hidden fields for the click id, the UTM values, the landing page and the referrer",
+      "detail": "no hidden source fields in the forms on /contact.html: a lead arrives with no record of where it came from"
+    },
+    {
+      "id": "5.2",
+      "phase": 5,
+      "status": "MANUAL",
+      "title": "Landing with ?gclid=TEST123&utm_source=test&utm_medium=cpc, moving to a second page and sending puts those values in fields on the lead record, and they survive a later visit",
+      "detail": "phone leads need a source too: a tracking number or a required lead source field"
+    },
+    {
+      "id": "6.1",
+      "phase": 6,
+      "status": "INFO",
+      "title": "Consent setup seen in the pages and the container",
+      "detail": "consent default: none found; consent tool: none found"
+    },
+    {
+      "id": "6.2",
+      "phase": 6,
+      "status": "MANUAL",
+      "title": "Consent behaves as designed: the default before any choice, no GA4 or click id cookie after a rejection, the gated tags after acceptance, and the choice remembered",
+      "detail": "Tag Assistant, Consent tab, and the browser's cookie list after each choice"
+    },
+    {
+      "id": "7.1",
+      "phase": 7,
+      "status": "SKIP",
+      "title": "Tagging server",
+      "detail": "the container sends straight to Google; no tagging server configured"
+    },
+    {
+      "id": "8.1",
+      "phase": 8,
+      "status": "SKIP",
+      "title": "Google Ads conversion tags have a Conversion Linker beside them",
+      "detail": "no Google Ads tags in the container"
+    },
+    {
+      "id": "8.2",
+      "phase": 8,
+      "status": "SKIP",
+      "title": "Ad platforms record conversions",
+      "detail": "no Google Ads or Meta tags found"
+    },
+    {
+      "id": "9.1",
+      "phase": 9,
+      "status": "INFO",
+      "title": "Run this again every month and keep the dated report",
+      "detail": "site edits, plugin updates and rebuilt forms break tracking without warning"
+    }
+  ],
+  "requests": []
+}

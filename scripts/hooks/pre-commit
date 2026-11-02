@@ -1,0 +1,10 @@
+#!/bin/sh
+# pre-commit: nothing credential-shaped gets committed.
+# Turn it on once per clone: git config core.hooksPath scripts/hooks   (or: npm run hooks)
+# Never bypass it with --no-verify: a hit means the value belongs outside the repository.
+root=$(git rev-parse --show-toplevel) || exit 1
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node is required to run scripts/scan-secrets.mjs; commit refused" >&2
+  exit 1
+fi
+exec node "$root/scripts/scan-secrets.mjs" --staged
